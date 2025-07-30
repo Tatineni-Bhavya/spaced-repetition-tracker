@@ -1,3 +1,6 @@
+// Get the API base URL - use current domain for production, localhost for development
+const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
+
 // Handle contact form submission
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
@@ -49,7 +52,7 @@ infoBox.innerHTML = `
             const email = emailInput.value;
             const phone = phoneInput.value;
             if (window.userContact) window.userContact.setUserContact(email, phone);
-            await fetch('http://localhost:3000/save-contact', {
+            await fetch(`${API_BASE_URL}/save-contact`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, phone })
@@ -82,7 +85,7 @@ infoBox.innerHTML = `
             return false;
         });
         if (dueSubjects.length === 0) return;
-        await fetch('http://localhost:3000/notify', {
+        await fetch(`${API_BASE_URL}/notify`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -508,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const contact = window.userContact ? window.userContact.getUserContact() : {};
         if (contact && contact.email && contact.phone) {
             try {
-                await fetch('http://localhost:3000/notify', {
+                await fetch(`${API_BASE_URL}/notify`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -581,7 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showNotification(`Marked review completed for: ${subject.name}`, 'success');
         // Optionally notify backend for email suppression
         const contact = window.userContact ? window.userContact.getUserContact() : {};
-        await fetch('http://localhost:3000/review-completed', {
+        await fetch(`${API_BASE_URL}/review-completed`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -654,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const subjects = await getSubjects();
-            const response = await fetch('http://localhost:3000/api/sync-to-cloud', {
+            const response = await fetch(`${API_BASE_URL}/api/sync-to-cloud`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, subjects })
@@ -688,7 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalLoadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
 
         try {
-            const response = await fetch(`http://localhost:3000/api/load-from-cloud?email=${encodeURIComponent(email)}`);
+            const response = await fetch(`${API_BASE_URL}/api/load-from-cloud?email=${encodeURIComponent(email)}`);
             
             if (response.ok) {
                 const cloudData = await response.json();
@@ -751,7 +754,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalDeleteButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
 
         try {
-            const response = await fetch('http://localhost:3000/api/delete-from-cloud', {
+            const response = await fetch(`${API_BASE_URL}/api/delete-from-cloud`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
