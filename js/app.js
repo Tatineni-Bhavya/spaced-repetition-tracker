@@ -51,20 +51,35 @@ infoBox.innerHTML = `
             const phoneInput = document.getElementById('phone');
             const email = emailInput.value;
             const phone = phoneInput.value;
-            if (window.userContact) window.userContact.setUserContact(email, phone);
-            await fetch(`${API_BASE_URL}/save-contact`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, phone })
-            });
-            notifyStatus.textContent = 'Contact info saved!';
-            notifyStatus.style.color = 'green';
-            contact.email = email;
-            contact.phone = phone;
-            displayContactInfo();
-            // Clear input fields after saving
-            emailInput.value = '';
-            phoneInput.value = '';
+            
+            try {
+                // Save locally first
+                if (window.userContact) window.userContact.setUserContact(email, phone);
+                
+                // Then save to server
+                const response = await fetch(`${API_BASE_URL}/save-contact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, phone })
+                });
+                
+                if (response.ok) {
+                    notifyStatus.textContent = 'Contact info saved successfully!';
+                    notifyStatus.style.color = 'green';
+                    contact.email = email;
+                    contact.phone = phone;
+                    displayContactInfo();
+                    // Clear input fields after saving
+                    emailInput.value = '';
+                    phoneInput.value = '';
+                } else {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error saving contact:', error);
+                notifyStatus.textContent = 'Error saving contact info. Please try again.';
+                notifyStatus.style.color = 'red';
+            }
         });
     }
 
