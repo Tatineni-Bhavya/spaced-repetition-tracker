@@ -262,14 +262,14 @@
 
     <section id="stats" class="section">
       <div class="stats-header">
-        <h2><i class="fas fa-chart-bar"></i> Performance Analytics</h2>
-        <p class="stats-subtitle">Track your learning progress and review performance</p>
+        <h2><i class="fas fa-chart-line"></i> Performance Analytics</h2>
+        <p class="stats-subtitle">Advanced insights into your learning journey and progress metrics</p>
       </div>
       
       <div class="stats-overview">
         <div class="stat-card modern">
           <div class="stat-icon">
-            <i class="fas fa-layer-group"></i>
+            <i class="fas fa-graduation-cap"></i>
           </div>
           <div class="stat-content">
             <span id="totalSubjects" class="stat-value">0</span>
@@ -278,16 +278,16 @@
         </div>
         <div class="stat-card modern">
           <div class="stat-icon reviews">
-            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-check-double"></i>
           </div>
           <div class="stat-content">
             <span id="reviewsToday" class="stat-value">0</span>
-            <p class="stat-label">Subjects Reviewed</p>
+            <p class="stat-label">Completed Reviews</p>
           </div>
         </div>
         <div class="stat-card modern">
           <div class="stat-icon pending">
-            <i class="fas fa-clock"></i>
+            <i class="fas fa-calendar-alt"></i>
           </div>
           <div class="stat-content">
             <span id="reviewsCompleted" class="stat-value">0</span>
@@ -296,15 +296,20 @@
         </div>
       </div>
 
+      <div class="stats-insights">
+        <h3><i class="fas fa-brain"></i> Learning Insights</h3>
+        <p>Your spaced repetition algorithm is optimizing memory retention through scientifically-proven intervals. Keep up the consistent review schedule for maximum learning efficiency!</p>
+      </div>
+
       <div class="charts-section">
         <div class="chart-card">
-          <h3><i class="fas fa-bar-chart"></i> Progress Overview</h3>
+          <h3><i class="fas fa-chart-bar"></i> Progress Analytics</h3>
           <div class="chart-wrapper">
             <canvas id="statsChart"></canvas>
           </div>
         </div>
         <div class="chart-card">
-          <h3><i class="fas fa-pie-chart"></i> Distribution</h3>
+          <h3><i class="fas fa-chart-pie"></i> Subject Distribution</h3>
           <div class="chart-wrapper">
             <canvas id="pieChart"></canvas>
           </div>
