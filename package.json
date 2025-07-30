@@ -2,9 +2,9 @@
   "name": "spaced-repetition-app",
   "version": "1.0.0",
   "description": "Spaced Repetition App backend and frontend",
-  "main": "server/server.js",
+  "main": "startup.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node startup.js",
     "dev": "node server/server.js",
     "build": "echo 'No build step required'"
   },
