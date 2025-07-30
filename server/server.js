@@ -68,6 +68,26 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Health check endpoint for Azure diagnostics
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    node_version: process.version,
+    mongodb_connected: !!db,
+    environment: {
+      has_mongo_uri: !!process.env.MONGO_URI,
+      has_twilio_sid: !!process.env.TWILIO_SID,
+      has_sendgrid_key: !!process.env.SENDGRID_API_KEY
+    }
+  });
+});
+
+// Simple test endpoint
+app.get('/', (req, res) => {
+  res.send('Spaced Repetition Tracker API is running!');
+});
+
 // Move this route below app initialization
 // Endpoint to save contact info
 app.post('/save-contact', (req, res) => {
