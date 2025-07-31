@@ -40,14 +40,60 @@
 
   <main>
   <section id="home" class="section active">
+  <!-- Welcome & Instructions Card -->
   <div id="welcome-card" style="
   border-radius:12px;
   padding:2rem;
-  max-width:800px;
+  max-width:900px;
   margin:2rem auto;
-  text-align:center;
+  text-align:left;
   font-family:system-ui,sans-serif;
   transition:all 0.3s ease;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+">
+  <div style="text-align:center; margin-bottom:2rem;">
+    <h2 style="margin:0; font-size:2rem; font-weight:700;">
+      <i class="fas fa-graduation-cap"></i> Welcome to Spaced Repetition Tracker!
+    </h2>
+    <p style="margin:0.5rem 0; opacity:0.9; font-size:1.1rem;">
+      Your personal learning companion powered by science-backed memory techniques
+    </p>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; margin-bottom:2rem;">
+    <div style="background:rgba(255,255,255,0.1); padding:1.5rem; border-radius:8px; backdrop-filter:blur(10px);">
+      <h3 style="margin:0 0 1rem 0; color:#ffd700;"><i class="fas fa-rocket"></i> Getting Started</h3>
+      <ol style="margin:0; padding-left:1.5rem; line-height:1.6;">
+        <li><strong>Add Subjects:</strong> Click "SUBJECTS" tab to add your study topics</li>
+        <li><strong>Set Notifications:</strong> Configure email/SMS alerts below</li>
+        <li><strong>Review Daily:</strong> Click "Good" or "Excellent" when you review</li>
+        <li><strong>Track Progress:</strong> Check "STATISTICS" for your learning insights</li>
+      </ol>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.1); padding:1.5rem; border-radius:8px; backdrop-filter:blur(10px);">
+      <h3 style="margin:0 0 1rem 0; color:#64ffda;"><i class="fas fa-brain"></i> How It Works</h3>
+      <ul style="margin:0; padding-left:1.5rem; line-height:1.6;">
+        <li><strong>Spaced Repetition:</strong> Reviews subjects at optimal intervals</li>
+        <li><strong>Smart Scheduling:</strong> "Good" = 2 days, "Excellent" = 4 days</li>
+        <li><strong>Auto Completion:</strong> Subjects disappear after 5 successful reviews</li>
+        <li><strong>Cloud Sync:</strong> Access your data from anywhere</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.1); padding:1.5rem; border-radius:8px; backdrop-filter:blur(10px); text-align:center;">
+    <h3 style="margin:0 0 1rem 0; color:#ff8a65;"><i class="fas fa-lightbulb"></i> Pro Tips</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; text-align:left;">
+      <div><strong>📱 Notifications:</strong> Get SMS/Email reminders for due reviews</div>
+      <div><strong>☁️ Cloud Sync:</strong> Backup your data to access on any device</div>
+      <div><strong>📊 Statistics:</strong> Monitor your learning progress and streaks</div>
+      <div><strong>🎯 Consistency:</strong> Review daily for maximum retention</div>
+    </div>
+  </div>
+</div>
 ">
   <h2 id="welcome-title" style="
     font-size:2rem;
@@ -117,16 +163,30 @@
 
     
     <div class="form-card">
-      <h2>Set Up Notifications</h2>
+      <h2><i class="fas fa-bell"></i> Set Up Notifications</h2>
+      <div style="background:#f0f8ff; padding:1rem; border-radius:8px; margin-bottom:1.5rem; border-left:4px solid #2196f3;">
+        <h4 style="margin:0 0 0.5rem 0; color:#1565c0;"><i class="fas fa-info-circle"></i> Why Set Up Notifications?</h4>
+        <p style="margin:0; color:#333; line-height:1.5;">
+          Get automatic SMS and email reminders when your subjects are due for review. 
+          This ensures you never miss a study session and maintain consistent learning progress.
+        </p>
+      </div>
+      
       <form id="contactForm">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-          <label for="phone">Phone (+countrycode...):</label>
-          <input type="tel" id="phone" name="phone" required>
-          <button type="submit">Save Contact Info</button>
+          <label for="email"><i class="fas fa-envelope"></i> Email Address:</label>
+          <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+          
+          <label for="phone"><i class="fas fa-phone"></i> Phone Number (with country code):</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+1234567890">
+          
+          <div style="background:#fff3e0; padding:0.8rem; border-radius:6px; margin:1rem 0; font-size:0.9rem; color:#e65100;">
+            <strong><i class="fas fa-exclamation-triangle"></i> Important:</strong> 
+            Include your country code (e.g., +1 for US, +91 for India). 
+            You'll receive SMS reminders instantly and email alerts if you don't respond within 2 hours.
+          </div>
+          
+          <button type="submit"><i class="fas fa-save"></i> Save Contact Info</button>
       </form>
-      <div id="notifyStatus"></div>
-      <button id="markCompleted" style="display:none;">Mark Review Completed</button>
       <div id="notifyStatus"></div>
       <button id="markCompleted" style="display:none;">Mark Review Completed</button>
     </div>
@@ -242,25 +302,88 @@
 
 
     <section id="subjects" class="section">
-      <h2 class="subjects-title"><i class="fas fa-book"></i> Add a New Subject</h2>
+      <!-- Instructions Panel -->
+      <div style="background: linear-gradient(135deg, #4caf50 0%, #45a049 100%); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);">
+        <h2 style="margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fas fa-graduation-cap"></i> How to Use Subjects
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+          <div>
+            <h4 style="margin: 0 0 0.5rem 0; color: #c8e6c9;"><i class="fas fa-plus-circle"></i> Adding Subjects</h4>
+            <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.5;">
+              <li><strong>Subject:</strong> Name of what you're studying (e.g., "Spanish Vocabulary")</li>
+              <li><strong>Details:</strong> Specific topic or chapter (e.g., "Unit 5: Past Tense")</li>
+              <li><strong>Review Date:</strong> Optional - set a specific date, or let the app schedule automatically</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin: 0 0 0.5rem 0; color: #c8e6c9;"><i class="fas fa-star"></i> Review System</h4>
+            <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.5;">
+              <li><strong>"Good":</strong> Next review in 2 days</li>
+              <li><strong>"Excellent":</strong> Next review in 4 days</li>
+              <li><strong>After 5 reviews:</strong> Subject auto-completes!</li>
+              <li><strong>"Mark Completed":</strong> Manually mark as done</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="subjects-title"><i class="fas fa-plus"></i> Add a New Subject</h2>
       <form id="subject-form" class="modern-form">
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required />
-        <label for="details">Details:</label>
-        <input type="text" id="details" name="details" required />
-        <label for="manualReviewDate">Manual Review Date (optional):</label>
+        <label for="subject"><i class="fas fa-book"></i> Subject Name:</label>
+        <input type="text" id="subject" name="subject" required placeholder="e.g., Mathematics, Spanish, Biology" />
+        
+        <label for="details"><i class="fas fa-list-alt"></i> Details/Topic:</label>
+        <input type="text" id="details" name="details" required placeholder="e.g., Chapter 5: Quadratic Equations" />
+        
+        <label for="manualReviewDate"><i class="fas fa-calendar-alt"></i> Custom Review Date (optional):</label>
         <input type="date" id="manualReviewDate" name="manualReviewDate" />
+        <small style="color: #666; font-style: italic;">Leave empty for automatic scheduling (recommended)</small>
+        
         <button type="submit" class="btn-primary"><i class="fas fa-plus"></i> Add Subject</button>
       </form>
 
-      <h2 class="subjects-title"><i class="fas fa-book"></i> Subjects</h2>
+      <h2 class="subjects-title"><i class="fas fa-list"></i> Your Subjects</h2>
+      <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+        <p style="margin: 0; color: #555; text-align: center;">
+          <i class="fas fa-info-circle"></i> 
+          <strong>Tip:</strong> Subjects marked as "Due Today" need your attention! 
+          Click "Good" or "Excellent" after reviewing to reschedule them.
+        </p>
+      </div>
+      
       <div id="search" style="margin-bottom:16px;">
-        <input type="text" id="search-input" placeholder="Search for a subject..." class="modern-input" />
+        <input type="text" id="search-input" placeholder="🔍 Search for a subject..." class="modern-input" />
       </div>
       <ul id="subjects-list" class="modern-list"></ul>
     </section>
 
     <section id="stats" class="section">
+      <!-- Stats Instructions -->
+      <div style="background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);">
+        <h2 style="margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fas fa-chart-line"></i> Understanding Your Statistics
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <div>
+            <h4 style="margin: 0 0 0.5rem 0; color: #e1bee7;"><i class="fas fa-info-circle"></i> Key Metrics</h4>
+            <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.5;">
+              <li><strong>Total Subjects:</strong> All subjects you've added to study</li>
+              <li><strong>Reviewed Subjects:</strong> Subjects you've reviewed at least once</li>
+              <li><strong>Due Today:</strong> Subjects that need review right now</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin: 0 0 0.5rem 0; color: #e1bee7;"><i class="fas fa-trophy"></i> Progress Tracking</h4>
+            <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.5;">
+              <li><strong>Charts:</strong> Visual representation of your learning progress</li>
+              <li><strong>Trends:</strong> See how consistently you're studying</li>
+              <li><strong>Goals:</strong> Aim to keep "Due Today" as low as possible!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div class="stats-header">
         <h2><i class="fas fa-chart-line"></i> Performance Analytics</h2>
         <p class="stats-subtitle">Advanced insights into your learning journey and progress metrics</p>
@@ -318,17 +441,57 @@
     </section>
 
 <section id="settings" class="section">
-  <div class="settings-card" style="background:#f8f9fa;border-radius:12px;box-shadow:0 2px 8px rgba(33,150,243,0.08);padding:24px;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto;">
+  <!-- Settings Instructions -->
+  <div style="background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);">
+    <h2 style="margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+      <i class="fas fa-cog"></i> App Settings & Data Management
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+      <div>
+        <h4 style="margin: 0 0 0.5rem 0; color: #ffe0b2;"><i class="fas fa-cloud"></i> Cloud Sync</h4>
+        <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.5;">
+          <li><strong>Sync to Cloud:</strong> Upload your data to access from any device</li>
+          <li><strong>Load from Cloud:</strong> Download your data from another device</li>
+          <li><strong>Delete from Cloud:</strong> Remove your data from cloud storage</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 0.5rem 0; color: #ffe0b2;"><i class="fas fa-save"></i> Backup & Import</h4>
+        <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.5;">
+          <li><strong>Backup:</strong> Download your data as a file</li>
+          <li><strong>Import:</strong> Upload a backup file to restore data</li>
+          <li><strong>Reset:</strong> Clear all data to start fresh</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-card" style="background:#f8f9fa;border-radius:12px;box-shadow:0 2px 8px rgba(33,150,243,0.08);padding:24px;margin-bottom:24px;max-width:450px;margin-left:auto;margin-right:auto;">
     <h2 style="color:#1976d2;"><i class="fas fa-save"></i> Backup and Import Data</h2>
+    <p style="color: #666; margin-bottom: 1rem; line-height: 1.4;">
+      <strong>Local Backup:</strong> Download your subjects as a JSON file for safekeeping. 
+      You can import this file later to restore your data.
+    </p>
     <button id="backup-button" class="settings-button btn-primary" style="margin-bottom:12px;">
-      <i class="fas fa-download"></i> Backup Data
+      <i class="fas fa-download"></i> Download Backup File
     </button>
+    <label for="import-file" style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: 500;">
+      <i class="fas fa-upload"></i> Upload Backup File:
+    </label>
     <input type="file" id="import-file" accept=".json" class="settings-file" style="margin-bottom:12px;" />
   </div>
 
-  <div class="settings-card" style="background:#f8f9fa;border-radius:12px;box-shadow:0 2px 8px rgba(33,150,243,0.08);padding:24px;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto;">
+  <div class="settings-card" style="background:#f8f9fa;border-radius:12px;box-shadow:0 2px 8px rgba(33,150,243,0.08);padding:24px;margin-bottom:24px;max-width:450px;margin-left:auto;margin-right:auto;">
     <h2 style="color:#1976d2;"><i class="fas fa-cloud"></i> Cloud Sync</h2>
-    <p style="margin-bottom:16px;color:#666;font-size:0.95rem;">Sync your subjects across devices using your email</p>
+    <p style="margin-bottom:16px;color:#666;line-height:1.4;">
+      <strong>Cross-Device Access:</strong> Use your email to sync data across multiple devices. 
+      Your subjects will be securely stored in the cloud and accessible anywhere.
+    </p>
+    <div style="background: #e8f5e8; padding: 0.8rem; border-radius: 6px; margin-bottom: 1rem; border-left: 4px solid #4caf50;">
+      <small style="color: #2e7d32;">
+        <strong><i class="fas fa-shield-alt"></i> Secure:</strong> Your data is encrypted and stored safely in MongoDB Atlas cloud database.
+      </small>
+    </div>
     <button id="sync-to-cloud" class="settings-button btn-primary" style="margin-bottom:8px;">
       <i class="fas fa-cloud-upload-alt"></i> Sync to Cloud
     </button>
@@ -340,18 +503,24 @@
     </button>
   </div>
 
-  <div class="settings-card" style="background:#f8f9fa;border-radius:12px;box-shadow:0 2px 8px rgba(33,150,243,0.08);padding:24px;max-width:400px;margin-left:auto;margin-right:auto;">
+  <div class="settings-card" style="background:#f8f9fa;border-radius:12px;box-shadow:0 2px 8px rgba(33,150,243,0.08);padding:24px;margin-bottom:24px;max-width:450px;margin-left:auto;margin-right:auto;">
     <h2 style="color:#1976d2;"><i class="fas fa-adjust"></i> Change Theme</h2>
+    <p style="color: #666; margin-bottom: 1rem;">
+      Switch between light and dark themes for comfortable viewing.
+    </p>
     <label for="theme-select" class="settings-label">Choose Theme:</label>
     <select id="theme-select" class="settings-select">
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
+      <option value="light">Light Mode</option>
+      <option value="dark">Dark Mode</option>
     </select>
   </div>
 
   <div class="settings-card warning">
     <h2><i class="fas fa-exclamation-triangle"></i> Reset the Tracker</h2>
-    <p>This deletes all your added subjects so that you can add new subjects from scratch.</p>
+    <p style="line-height: 1.4;">
+      <strong>⚠️ Warning:</strong> This permanently deletes ALL your subjects and progress. 
+      Use this only if you want to start completely fresh. Consider backing up your data first!
+    </p>
     <button id="reset-data" class="settings-button danger">
       <i class="fas fa-trash-alt"></i> Reset All Data
     </button>
