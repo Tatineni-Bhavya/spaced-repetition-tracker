@@ -63,10 +63,36 @@ See [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md) for detailed deployment instructi
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB Atlas
-- **Charts**: Chart.js
+
 - **Storage**: IndexedDB (client-side)
 - **Notifications**: SendGrid (email), Twilio (SMS)
 - **Deployment**: Azure App Service, GitHub Actions
+
+
+## 🏁 Quick Start (Local Development)
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Tatineni-Bhavya/spaced-repetation-tracker-bhavya-deployment.git
+   cd spaced-repetation-tracker-bhavya-deployment
+   ```
+2. **Install dependencies:**
+   ```bash
+   cd server
+   npm install
+   cd ..
+   ```
+3. **Set up environment variables:**
+   - Copy the required variables from the README or deployment guide into a `.env` file in the `server/` directory.
+4. **Start the backend server:**
+   ```bash
+   cd server
+   npm start
+   ```
+5. **Open `index.html` in your browser:**
+   - You can use a local server extension or open the file directly for frontend testing.
+
+---
 
 ## 📱 Usage
 
@@ -84,19 +110,10 @@ See [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md) for detailed deployment instructi
 - Secure cloud database with Atlas MongoDB
 - Proper input validation and error handling
 
-## 📈 Learning Science
 
-Based on Hermann Ebbinghaus's Forgetting Curve research, this app implements optimal review intervals:
-- Initial review: 1 day
-- Second review: 3 days
-- Third review: 7 days
-- Fourth review: 14 days
-- Fifth review: 30 days
 
-## 🎯 Production Status
 
-✅ **DEPLOYMENT READY** - Enterprise-level features with cloud sync, cross-device support, automated notifications, and modern UI.
 
 ---
 
-**Built with ❤️ for optimized learning**
+
